@@ -33,7 +33,7 @@ public class SelectMultipleUnits : MonoBehaviour {
             for (int i = 0; i < hits.Length; i++)
             {
                 RaycastHit hit2 = hits[i];
-                if (hit2.collider.tag == "Unit")
+                if (hit2.collider.tag == "Player1")
                 {
                     if (!hit2.collider.GetComponent<SelectUnit>().isSelected)
                     {
