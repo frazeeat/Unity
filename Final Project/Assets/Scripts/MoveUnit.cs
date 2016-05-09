@@ -18,7 +18,7 @@ public class MoveUnit : MonoBehaviour {
 
 	void Start () {
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("MainCamera");
+        //player = GameObject.FindGameObjectWithTag("MainCamera");
         newPosition = transform.position;
 	}
 	
@@ -86,7 +86,8 @@ public class MoveUnit : MonoBehaviour {
         }
         
         shoot++;
-        if (shoot == 100)
+        float speed = GetComponent<Stats>().attackspeed;
+        if (shoot == 100*speed)
             shoot = 0;
 	}
     GameObject GetClosestEnemy(GameObject[] enemies)
