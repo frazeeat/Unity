@@ -3,9 +3,10 @@ using System.Collections;
 
 public class SelectMultipleUnits : MonoBehaviour {
     Vector3 firstPosition, secondPosition;
+    private Camera cam;
 	// Use this for initialization
 	void Start () {
-	
+        cam = GetComponent<Camera>();
 	}
 	
 	// Update is called once per frame
@@ -13,7 +14,9 @@ public class SelectMultipleUnits : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            Debug.DrawRay(ray.origin, ray.direction * 10, Color.green, 10.0f, false);
+
             if (Physics.Raycast(ray, out hit))
             {
                 firstPosition = hit.point;
@@ -23,7 +26,9 @@ public class SelectMultipleUnits : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            Debug.DrawRay(ray.origin, ray.direction * 10, Color.green, 10.0f, false);
+
             if (Physics.Raycast(ray, out hit))
             {
                 secondPosition = hit.point;

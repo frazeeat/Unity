@@ -15,6 +15,8 @@ public class SetupLocalPlayer : NetworkBehaviour {
             gameObject.transform.Rotate(-Vector3.left,90.0f);
             GetComponent<SelectMultipleUnits>().enabled = true;
             GetComponent<MoveCamera>().enabled = true;
+            GetComponent<FUCK>().enabled = true;
+
         }
         else
         {
