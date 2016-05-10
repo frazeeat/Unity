@@ -14,6 +14,20 @@ public class SelectUnit : MonoBehaviour {
   //      }
   //  }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (isSelected)
+            {
+                GameObject.Find("FactoryManager").BroadcastMessage("getSpareParts");
+                Destroy(this.gameObject);
+
+            }
+        }  
+        
+    }
+
     public void Select()
     {
         clone = Instantiate(selected) as GameObject;

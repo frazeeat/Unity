@@ -10,15 +10,18 @@ public class CaptureZone : MonoBehaviour {
 
     void Update()
     {
-        if (team1 > team2)
+        if (team1 > team2 && Time.time > nextCapture)
         {
-            print("team1 capture");
+            nextCapture = Time.time + captureTime;
+            this.GetComponent<CaptureLogic>().team1Point();
         }
 
-        if (team1 < team2)
+        if (team1 < team2 && Time.time > nextCapture)
         {
-            print("team2 capture");
+            nextCapture = Time.time + captureTime;
+            this.GetComponent<CaptureLogic>().team2Point();
         }
+     
     }
 
     void OnTriggerEnter(Collider obj)

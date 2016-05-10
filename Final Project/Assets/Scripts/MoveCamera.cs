@@ -4,9 +4,17 @@ using System.Collections;
 public class MoveCamera : MonoBehaviour {
 
     public float speed = 5.0f;
+     float minFov= 15f;
+    float maxFov= 90f;
+    float sensitivity= 10f;
 	
 	// Update is called once per frame
 	void Update () {
+
+           float fov = Camera.main.fieldOfView;
+   fov -= Input.GetAxis("Mouse ScrollWheel") * sensitivity;
+   fov = Mathf.Clamp(fov, minFov, maxFov);
+   Camera.main.fieldOfView = fov;
 
         if (Input.mousePosition.x < 2 && gameObject.transform.position.x > -38.0f)
         {
