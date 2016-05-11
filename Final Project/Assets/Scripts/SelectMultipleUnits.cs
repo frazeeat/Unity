@@ -4,6 +4,9 @@ using System.Collections;
 public class SelectMultipleUnits : MonoBehaviour {
     Vector3 firstPosition, secondPosition;
     private Camera cam;
+    bool isMouseDown = false;
+    GameObject select;
+    public GameObject objectToSelect;
 	// Use this for initialization
 	void Start () {
         cam = GetComponent<Camera>();
@@ -20,10 +23,15 @@ public class SelectMultipleUnits : MonoBehaviour {
             if (Physics.Raycast(ray, out hit))
             {
                 firstPosition = hit.point;
+                objectToSelect.transform.position = firstPosition;
+                objectToSelect.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+                select = Instantiate(objectToSelect);
+                
             }
+            isMouseDown = true;
 
         }
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (isMouseDown)
         {
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -32,20 +40,21 @@ public class SelectMultipleUnits : MonoBehaviour {
             if (Physics.Raycast(ray, out hit))
             {
                 secondPosition = hit.point;
+                Vector3 topLeft = new Vector3(firstPosition.x, firstPosition.y, secondPosition.z);
+                Vector3 betweenz = topLeft - firstPosition;
+                Vector3 betweenx = topLeft - secondPosition;
+                float distancez = betweenz.magnitude;
+                float distancex = betweenx.magnitude;
+                select.transform.localScale = new Vector3(distancex, 10.0f,distancez)/10.0f;
+                select.transform.position = firstPosition + new Vector3(-(betweenx.x / 2.0f),1.5f,(betweenz.z/2.0f));
+            
             }
-            RaycastHit[] hits;
-            hits = Physics.CapsuleCastAll(firstPosition, secondPosition, 1.0f, transform.forward, 10);
-            for (int i = 0; i < hits.Length; i++)
-            {
-                RaycastHit hit2 = hits[i];
-                if (hit2.collider.tag == "Player1")
-                {
-                    if (!hit2.collider.GetComponent<SelectUnit>().isSelected)
-                    {
-                        hit2.collider.GetComponent<SelectUnit>().Select();
-                    }
-                }
-            }
+
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            isMouseDown = false;
+            Destroy(select.gameObject);
 
         }
 	}
