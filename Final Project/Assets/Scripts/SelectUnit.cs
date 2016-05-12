@@ -6,22 +6,24 @@ public class SelectUnit : MonoBehaviour {
     public bool isSelected = false;
     GameObject clone;
 
-    
-  //  void OnMouseDown() {
-  //      if (!isSelected)
-  //      {
-  //          Select();
-  //      }
-  //  }
+    void Update()
+    {
+        if (Input.GetKeyDown("space")&& isSelected)
+        {
+            GameObject.Find("FactoryManager").BroadcastMessage("getSpareParts");
+            Destroy(this.gameObject);
+        }
+    }
 
     public void Select()
     {
-        clone = Instantiate(selected) as GameObject;
-        clone.transform.parent = gameObject.transform;
-        clone.transform.position = gameObject.transform.position;
-        isSelected = true;
-        //GetComponent<MoveUnit>().isSelected = true;
-        //GetComponent<MoveUnit>().goAhead = true;
+        if (!isSelected)
+        {
+            clone = Instantiate(selected) as GameObject;
+            clone.transform.parent = gameObject.transform;
+            clone.transform.position = gameObject.transform.position;
+            isSelected = true;
+        }
     }
     public void Deselect()
     {

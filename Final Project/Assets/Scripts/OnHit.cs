@@ -6,7 +6,7 @@ public class OnHit : MonoBehaviour {
 	void OnTriggerEnter(Collider collider){
         if (collider.gameObject.tag == "Player2")
         {
-            collider.GetComponent<Stats>().health = collider.GetComponent<Stats>().health - damage;
+            collider.GetComponent<BaseStats>().health = collider.GetComponent<BaseStats>().health - damage;
             Destroy(this.gameObject);
         }
     }
