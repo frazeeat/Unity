@@ -6,6 +6,15 @@ public class SelectUnit : MonoBehaviour {
     public bool isSelected = false;
     GameObject clone;
 
+    void Update()
+    {
+        if (Input.GetKeyDown("space")&& isSelected)
+        {
+            GameObject.Find("FactoryManager").BroadcastMessage("getSpareParts");
+            Destroy(this.gameObject);
+        }
+    }
+
     public void Select()
     {
         if (!isSelected)
