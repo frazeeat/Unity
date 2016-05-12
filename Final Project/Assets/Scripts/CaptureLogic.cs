@@ -7,7 +7,7 @@ public class CaptureLogic : MonoBehaviour {
     public GameObject ObjectToSpawn;
     public GameObject ObjectToSpawn2;
     private float nextSpawn = 0.0f;
-    private int ownership = 0;
+    public int ownership = 0;
 
 
     void Update () {

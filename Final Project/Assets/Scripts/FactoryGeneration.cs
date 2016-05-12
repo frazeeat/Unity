@@ -23,7 +23,7 @@ public class FactoryGeneration : MonoBehaviour {
         if (spareParts >= partsForFactory)
         {
             RaycastHit hit;
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
                 position = hit.point;
