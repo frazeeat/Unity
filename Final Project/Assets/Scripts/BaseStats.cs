@@ -1,16 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Stats : MonoBehaviour {
+public class BaseStats : MonoBehaviour {
 
-    public float health, attackspeed, damage;
-
-	// Use this for initialization
-	void Start () {
-        health = 2.0f;
-        attackspeed = 1.0f;
-        damage = 1.0f;
-	}
+    public float health;
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,6 +16,4 @@ public class Stats : MonoBehaviour {
     {
         Destroy(this.gameObject);
     }
-
-
 }
