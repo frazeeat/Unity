@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
+using Photon;
 using System.Collections;
 
-public class FUCK : NetworkBehaviour {
-
-    public GameObject g;
+public class FUCK : Photon.PunBehaviour
+{
 
 	// Use this for initialization
 	void Start () {
@@ -18,10 +17,10 @@ public class FUCK : NetworkBehaviour {
         }
 	}
 
-    [Command]
+    [PunRPC]
     public void CmdSpawn()
     {
-        GameObject go = (GameObject)Instantiate(g) as GameObject;
-        NetworkServer.SpawnWithClientAuthority(go, connectionToClient);
+        //GameObject go = (GameObject)Instantiate(g) as GameObject;
+        GameObject monster = PhotonNetwork.Instantiate("Unit", Vector3.zero, Quaternion.identity, 0);
     }
 }
